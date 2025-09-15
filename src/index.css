@@ -1,0 +1,218 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* Pure black background with white text for ultimate contrast */
+    --background: 0 0% 0%;    /* Pure black */
+    --foreground: 0 0% 100%;  /* Pure white text */
+
+    --card: 0 0% 5%;         /* Very dark card background */
+    --card-foreground: 0 0% 100%;  /* White text */
+
+    --popover: 0 0% 5%;       /* Dark popover */
+    --popover-foreground: 0 0% 100%;  /* White text */
+
+    /* Primary: Sandy red/coral accent */
+    --primary: 12 78% 58%;
+    --primary-foreground: 0 0% 100%;  /* White text */
+
+    /* Secondary: Warm amber/topaz accent */
+    --secondary: 32 85% 68%;
+    --secondary-foreground: 0 0% 100%;  /* White text */
+
+    --muted: 0 0% 10%;        /* Dark muted background */
+    --muted-foreground: 0 0% 70%;  /* Light muted text */
+
+    /* Accent: Deep crimson */
+    --accent: 0 72% 52%;
+    --accent-foreground: 0 0% 100%;  /* White text */
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;  /* White text */
+
+    --border: 0 0% 20%;       /* Dark border */
+    --input: 0 0% 10%;        /* Dark input backgrounds */
+    --ring: 12 78% 58%;       /* Focus ring matches primary */
+
+    --radius: 0.75rem;
+
+    /* Sidebar styling */
+    --sidebar-background: 0 0% 0%;     /* Pure black sidebar */
+    --sidebar-foreground: 0 0% 100%;   /* White text */
+    --sidebar-primary: 12 78% 58%;     /* Sandy red primary */
+    --sidebar-primary-foreground: 0 0% 100%;  /* White text */
+    --sidebar-accent: 0 0% 10%;        /* Dark accent hover */
+    --sidebar-accent-foreground: 0 0% 100%;  /* White text */
+    --sidebar-border: 0 0% 15%;        /* Dark border */
+    --sidebar-ring: 12 78% 58%;        /* Focus ring */
+
+    /* Gemstone colors for pitch cards */
+    --ruby: 0 78% 58%;
+    --emerald: 140 65% 45%;
+    --sapphire: 220 85% 55%;
+    --amethyst: 280 65% 60%;
+    --topaz: 45 90% 65%;
+
+    /* Brand colors */
+    --brand: 12 78% 58%;
+    --brand-2: 32 85% 68%;
+
+    /* Background gradients - pure black */
+    --bg-start: 0 0% 0%;      /* Pure black start */
+    --bg-middle: 0 0% 0%;     /* Pure black middle */
+    --bg-end: 0 0% 0%;        /* Pure black end */
+
+    /* Glass effects */
+    --glass-bg: 18 35% 92% / 0.7;
+    --glass-border: 18 25% 85% / 0.3;
+    --glass-shadow: 0 8px 32px 0 hsl(18 25% 15% / 0.37);
+  }
+
+  .dark {
+    /* Dark mode: Black to sandy red gradient */
+    --background: 0 15% 8%;
+    --foreground: 18 45% 92%;
+
+    --card: 0 15% 12%;
+    --card-foreground: 18 45% 92%;
+
+    --popover: 0 15% 12%;
+    --popover-foreground: 18 45% 92%;
+
+    --primary: 12 78% 58%;
+    --primary-foreground: 0 15% 8%;
+
+    --secondary: 18 25% 20%;
+    --secondary-foreground: 18 45% 92%;
+
+    --muted: 18 15% 18%;
+    --muted-foreground: 18 25% 65%;
+
+    --accent: 0 72% 52%;
+    --accent-foreground: 18 45% 92%;
+
+    --destructive: 0 62.8% 50.6%;
+    --destructive-foreground: 18 45% 92%;
+
+    --border: 18 15% 22%;
+    --input: 18 15% 22%;
+    --ring: 12 78% 58%;
+
+    --sidebar-background: 0 15% 10%;
+    --sidebar-foreground: 18 35% 85%;
+    --sidebar-primary: 12 78% 58%;
+    --sidebar-primary-foreground: 0 15% 8%;
+    --sidebar-accent: 18 15% 18%;
+    --sidebar-accent-foreground: 18 35% 85%;
+    --sidebar-border: 18 15% 20%;
+    --sidebar-ring: 12 78% 58%;
+
+    /* Gemstone colors for dark mode */
+    --ruby: 0 78% 62%;
+    --emerald: 140 65% 50%;
+    --sapphire: 220 85% 60%;
+    --amethyst: 280 65% 65%;
+    --topaz: 45 90% 70%;
+
+    --brand: 12 78% 62%;
+    --brand-2: 32 85% 72%;
+
+    /* Dark gradient: black to sandy red */
+    --bg-start: 0 15% 6%;
+    --bg-middle: 0 25% 15%;
+    --bg-end: 12 45% 25%;
+
+    --glass-bg: 0 15% 12% / 0.7;
+    --glass-border: 18 15% 25% / 0.3;
+    --glass-shadow: 0 8px 32px 0 hsl(0 15% 5% / 0.6);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@layer utilities {
+  .animation-delay-2000 { animation-delay: 2s; }
+  .animation-delay-4000 { animation-delay: 4s; }
+  
+  /* Glass morphism utilities */
+  .glass-card {
+    @apply bg-white/10 backdrop-blur-md border border-white/20 shadow-lg;
+  }
+  
+  .glass-card-dark {
+    @apply bg-black/20 backdrop-blur-md border border-white/10 shadow-xl;
+  }
+  
+  /* Gemstone gradient backgrounds */
+  .bg-ruby-shine {
+    background: linear-gradient(135deg, hsl(var(--ruby)) 0%, hsl(var(--ruby)) 50%, hsl(var(--ruby) / 0.8) 100%);
+    box-shadow: 0 8px 32px hsl(var(--ruby) / 0.3), inset 0 1px 0 hsl(0 0% 100% / 0.2);
+  }
+  
+  .bg-emerald-shine {
+    background: linear-gradient(135deg, hsl(var(--emerald)) 0%, hsl(var(--emerald)) 50%, hsl(var(--emerald) / 0.8) 100%);
+    box-shadow: 0 8px 32px hsl(var(--emerald) / 0.3), inset 0 1px 0 hsl(0 0% 100% / 0.2);
+  }
+  
+  .bg-sapphire-shine {
+    background: linear-gradient(135deg, hsl(var(--sapphire)) 0%, hsl(var(--sapphire)) 50%, hsl(var(--sapphire) / 0.8) 100%);
+    box-shadow: 0 8px 32px hsl(var(--sapphire) / 0.3), inset 0 1px 0 hsl(0 0% 100% / 0.2);
+  }
+  
+  .bg-amethyst-shine {
+    background: linear-gradient(135deg, hsl(var(--amethyst)) 0%, hsl(var(--amethyst)) 50%, hsl(var(--amethyst) / 0.8) 100%);
+    box-shadow: 0 8px 32px hsl(var(--amethyst) / 0.3), inset 0 1px 0 hsl(0 0% 100% / 0.2);
+  }
+  
+  .bg-topaz-shine {
+    background: linear-gradient(135deg, hsl(var(--topaz)) 0%, hsl(var(--topaz)) 50%, hsl(var(--topaz) / 0.8) 100%);
+    box-shadow: 0 8px 32px hsl(var(--topaz) / 0.3), inset 0 1px 0 hsl(0 0% 100% / 0.2);
+  }
+  
+  /* Typography system */
+  .font-sk-cuber {
+    font-family: 'SK Cuber', system-ui, sans-serif;
+  }
+
+  .font-google-display {
+    font-family: 'Roboto', system-ui, sans-serif;
+    font-weight: 700;
+  }
+  
+  .font-google-body {
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+  
+  /* Seductive header styling */
+  .seductive-header {
+    @apply text-lg font-google-display tracking-wide;
+    background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--accent)));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 2px 4px hsl(var(--primary) / 0.2));
+  }
+  
+  /* Hover effects */
+  .hover-glow {
+    @apply transition-all duration-300;
+  }
+  .hover-glow:hover {
+    filter: drop-shadow(0 0 20px hsl(var(--primary) / 0.5));
+    transform: translateY(-2px);
+  }
+}
