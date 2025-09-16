@@ -8,6 +8,24 @@ import NotFound from "./pages/NotFound";
 import DiscoveryTier from "./pages/DiscoveryTier";
 import Feed from "./pages/Feed";
 import MicroCommunities from "./pages/Communities";
+import { createTask } from './api'; // Import the function
+
+function App() {
+
+  const handleButtonClick = () => {
+    // Call the function when the button is clicked
+    createTask("This is a test task from my React app!");
+  };
+
+  return (
+    <div className="App">
+      <h1>My MVP App</h1>
+      <button onClick={handleButtonClick}>Create New Task</button>
+    </div>
+  );
+}
+
+export default App;
 
 
 const queryClient = new QueryClient();
