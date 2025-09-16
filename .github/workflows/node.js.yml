@@ -45,7 +45,7 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           # Upload the directory that your build command generates
-          path: './build' # ⚠️ If your output folder is different (e.g., 'dist'), change it here.
+          path: './dist # ⚠️ If your output folder is different (e.g., 'dist'), change it here.
 
   # Deployment job
   deploy:
