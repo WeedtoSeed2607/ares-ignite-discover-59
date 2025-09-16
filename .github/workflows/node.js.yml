@@ -41,12 +41,12 @@ jobs:
         run: npm run build # ⚠️ If your build command is different, change it here.
       - name: Setup Pages
         uses: actions/configure-pages@v5
+      # ... previous lines
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Upload the directory that your build command generates
-          path: './dist # ⚠️ If your output folder is different (e.g., 'dist'), change it here.
-
+             # Upload the directory that your build command generates
+             path: './dist' # If your output folder is different, change it here.
   # Deployment job
   deploy:
     environment:
