@@ -10,22 +10,13 @@ import Feed from "./pages/Feed";
 import MicroCommunities from "./pages/Communities";
 import { createTask } from './api'; // Import the function
 
+import React, { useState } from 'react';
+import { createTask } from './api';
+
 function App() {
+  const [taskInput, setTaskInput] = useState('');
+  const [message, setMessage] = useState('');
 
-  const handleButtonClick = () => {
-    // Call the function when the button is clicked
-    createTask("This is a test task from my React app!");
-  };
-
-  return (
-    <div className="App">
-      <h1>My MVP App</h1>
-      <button onClick={handleButtonClick}>Create New Task</button>
-    </div>
-  );
-}
-
-export default App;
 
 
 const queryClient = new QueryClient();
@@ -55,5 +46,22 @@ const App = () => (
     </TooltipProvider>
   </QueryClientProvider>
 );
+
+  return (
+    <div className="App">
+      <h1>My Task App</h1>
+      <form onSubmit={handleFormSubmit}>
+        <input
+          type="text"
+          value={taskInput}
+          onChange={(e) => setTaskInput(e.target.value)}
+          placeholder="Enter a new task"
+        />
+        <button type="submit">Add Task</button>
+      </form>
+      {message && <p>{message}</p>}
+    </div>
+  );
+}
 
 export default App;
