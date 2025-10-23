@@ -1,17 +1,27 @@
-import { NavLink, useLocation } from "react-router-dom";
-import { Home, Compass, MessageSquare, Users, Twitter, Instagram, Github, ChevronDown, ChevronRight } from "lucide-react";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
+import { Home, Compass, MessageSquare, Users, Twitter, Instagram, Github, ChevronDown, ChevronRight, LogOut, User } from "lucide-react";
 import aresLogo from "@/assets/ares-logo.png";
 import { useState } from "react";
+import { useAuth } from "@/contexts/AuthContext";
+import { Button } from "@/components/ui/button";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 
 const navLinkBase = "flex items-center gap-3 px-4 py-2 rounded-md transition-colors hover:bg-sidebar-accent text-sm font-medium";
 
 const Sidebar = () => {
   const location = useLocation();
+  const navigate = useNavigate();
+  const { user, signOut } = useAuth();
   const [communitiesExpanded, setCommunitiesExpanded] = useState(
     location.pathname.startsWith('/communities')
   );
 
   const isCommunitiesActive = location.pathname.startsWith('/communities');
+
+  const handleSignOut = async () => {
+    await signOut();
+    navigate('/auth');
+  };
 
   return (
     <aside className="fixed left-0 top-0 h-screen w-64 bg-sidebar text-sidebar-foreground border-r border-sidebar-border">
@@ -79,7 +89,30 @@ const Sidebar = () => {
         </a>
       </div>
 
-      <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-sidebar-border">
+      <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-sidebar-border space-y-4">
+        {user && (
+          <div className="space-y-3">
+            <div className="flex items-center gap-3 px-2">
+              <Avatar className="h-8 w-8">
+                <AvatarFallback className="bg-sidebar-accent">
+                  <User className="w-4 h-4" />
+                </AvatarFallback>
+              </Avatar>
+              <div className="flex-1 min-w-0">
+                <p className="text-xs font-medium truncate text-sidebar-foreground">{user.email}</p>
+              </div>
+            </div>
+            <Button
+              variant="outline"
+              size="sm"
+              className="w-full justify-start gap-2"
+              onClick={handleSignOut}
+            >
+              <LogOut className="w-4 h-4" />
+              Sign Out
+            </Button>
+          </div>
+        )}
         <div className="flex items-center justify-between text-sidebar-foreground/80">
           <a href="#" aria-label="Twitter" className="hover:text-foreground transition-colors"><Twitter className="h-5 w-5" /></a>
           <a href="#" aria-label="Instagram" className="hover:text-foreground transition-colors"><Instagram className="h-5 w-5" /></a>

@@ -1,6 +1,9 @@
-import { NavLink, useLocation } from "react-router-dom";
-import { Home, Compass, MessageSquare, Users, Twitter, Instagram, Github, ChevronDown, ChevronRight } from "lucide-react";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
+import { Home, Compass, MessageSquare, Users, Twitter, Instagram, Github, ChevronDown, ChevronRight, LogOut, User } from "lucide-react";
 import { useState } from "react";
+import { useAuth } from "@/contexts/AuthContext";
+import { Button } from "@/components/ui/button";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 
 interface MobileSidebarProps {
   onClose: () => void;
@@ -8,6 +11,8 @@ interface MobileSidebarProps {
 
 const MobileSidebar = ({ onClose }: MobileSidebarProps) => {
   const location = useLocation();
+  const navigate = useNavigate();
+  const { user, signOut } = useAuth();
   const [communitiesExpanded, setCommunitiesExpanded] = useState(
     location.pathname.startsWith('/communities')
   );
@@ -17,6 +22,12 @@ const MobileSidebar = ({ onClose }: MobileSidebarProps) => {
   const navLinkBase = "flex items-center gap-3 px-4 py-3 transition-colors hover:bg-muted text-sm font-medium border-b border-border/50";
 
   const handleNavClick = () => {
+    onClose();
+  };
+
+  const handleSignOut = async () => {
+    await signOut();
+    navigate('/auth');
     onClose();
   };
 
@@ -92,12 +103,36 @@ const MobileSidebar = ({ onClose }: MobileSidebarProps) => {
         </div>
       </nav>
 
-      <div className="p-4 border-t border-border">
+      <div className="p-4 border-t border-border space-y-4">
+        {user && (
+          <div className="space-y-3">
+            <div className="flex items-center gap-3 px-2">
+              <Avatar className="h-8 w-8">
+                <AvatarFallback className="bg-muted">
+                  <User className="w-4 h-4" />
+                </AvatarFallback>
+              </Avatar>
+              <div className="flex-1 min-w-0">
+                <p className="text-xs font-medium truncate">{user.email}</p>
+              </div>
+            </div>
+            <Button
+              variant="outline"
+              size="sm"
+              className="w-full justify-start gap-2"
+              onClick={handleSignOut}
+            >
+              <LogOut className="w-4 h-4" />
+              Sign Out
+            </Button>
+          </div>
+        )}
+        
         <a 
           href="https://docs.google.com/forms/d/e/1FAIpQLSfwumh-I9aRQpc1zX4dCjoAd1a42i7MbIE4xN91gLGheNBMiA/viewform?usp=header"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-xs text-muted-foreground hover:text-foreground transition-colors block text-center mb-4"
+          className="text-xs text-muted-foreground hover:text-foreground transition-colors block text-center"
         >
           Completed Testing? Click here.
         </a>
