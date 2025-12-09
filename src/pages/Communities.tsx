@@ -37,7 +37,7 @@ const MicroCommunities = () => {
             </div>
             <div>
               <div className="font-semibold flex items-center gap-2">Creator Support Group <Users className="h-4 w-4" /></div>
-              <div className="text-xs text-muted-foreground">128 members • 12 active</div>
+              <div className="text-xs text-muted-foreground">18/20 members • 12 active</div>
             </div>
           </div>
 
