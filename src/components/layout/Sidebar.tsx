@@ -1,5 +1,5 @@
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
-import { Home, Compass, MessageSquare, Users, Twitter, Instagram, Github, ChevronDown, ChevronRight, LogOut, User } from "lucide-react";
+import { Home, Compass, MessageSquare, Users, Twitter, Instagram, Github, ChevronDown, ChevronRight, LogOut, User, HelpCircle } from "lucide-react";
 import aresLogo from "@/assets/ares-logo.png";
 import { useState } from "react";
 import { useAuth } from "@/contexts/AuthContext";
@@ -76,6 +76,11 @@ const Sidebar = () => {
             </div>
           )}
         </div>
+        
+        <NavLink to="/help" className={({isActive}) => `${navLinkBase} ${isActive ? 'bg-sidebar-accent' : ''}`}>
+          <HelpCircle className="h-4 w-4" />
+          <span>Help & Contact</span>
+        </NavLink>
       </nav>
 
       <div className="p-4 border-t border-sidebar-border">

@@ -11,6 +11,7 @@ import NotFound from "./pages/NotFound";
 import DiscoveryTier from "./pages/DiscoveryTier";
 import Feed from "./pages/Feed";
 import MicroCommunities from "./pages/Communities";
+import HelpContact from "./pages/HelpContact";
 
 const queryClient = new QueryClient();
 
@@ -33,6 +34,7 @@ const App = () => (
             <Route path="/communities" element={<ProtectedRoute><MicroCommunities /></ProtectedRoute>} />
             <Route path="/communities/creator-mini" element={<ProtectedRoute><MicroCommunities /></ProtectedRoute>} />
             <Route path="/communities/feed" element={<ProtectedRoute><MicroCommunities /></ProtectedRoute>} />
+            <Route path="/help" element={<ProtectedRoute><HelpContact /></ProtectedRoute>} />
             
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
