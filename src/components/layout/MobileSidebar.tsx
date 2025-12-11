@@ -1,5 +1,5 @@
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
-import { Home, Compass, MessageSquare, Users, Twitter, Instagram, Github, ChevronDown, ChevronRight, LogOut, User } from "lucide-react";
+import { Home, Compass, MessageSquare, Users, Twitter, Instagram, Github, ChevronDown, ChevronRight, LogOut, User, HelpCircle } from "lucide-react";
 import { useState } from "react";
 import { useAuth } from "@/contexts/AuthContext";
 import { Button } from "@/components/ui/button";
@@ -101,6 +101,15 @@ const MobileSidebar = ({ onClose }: MobileSidebarProps) => {
             </div>
           )}
         </div>
+
+        <NavLink 
+          to="/help" 
+          className={({isActive}) => `${navLinkBase} ${isActive ? 'bg-muted text-primary' : ''}`}
+          onClick={handleNavClick}
+        >
+          <HelpCircle className="h-5 w-5" />
+          <span>Help & Contact</span>
+        </NavLink>
       </nav>
 
       <div className="p-4 border-t border-border space-y-4">
